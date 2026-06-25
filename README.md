@@ -28,7 +28,10 @@ This application is built with a highly modular, high-performance architecture s
 **Database: SQL**
 * A relational SQL database utilizing B-Tree indexing and primary keys to ensure lightning-fast user authentication and secure data retrieval.
 
+I WILL UPDATE MY DAILY PROGRESS
+TODAY'S PROGRESS:- TRIED TO CLEAN THE LSNDING PSGE UI BUT FAILED
 ## 📂 Project Structure
+
 ```text
 aura_bank/
 │
@@ -64,3 +67,5 @@ The backend API will run on http://127.0.0.1:8000. You can view the interactive 
 4. Start the Streamlit Frontend Open a second terminal window, ensure your virtual environment is activated, and run the Streamlit app:
 streamlit run main.py
 The gamified neobank will open in your browser at http://localhost:8501.
+
+

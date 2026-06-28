@@ -11,4 +11,8 @@ def get_db():
         "TrustServerCertificate=yes;"
         "Connection Timeout=30;"
     )
-    return pyodbc.connect(CONN_STR)
+    conn= pyodbc.connect(CONN_STR)
+    try:
+        yield conn
+    finally:
+        conn.close()

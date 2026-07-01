@@ -12,6 +12,19 @@ if "authenticated_user" not in st.session_state:
 #If they are login fetch their username from memory
 current_user=st.session_state["authenticated_user"]
 
+#==========================================================
+#2. SLIDEBAR PROFILE AND LOGOUT
+#==========================================================
+
+st.sidebar.markdown(f"👤 **Logged in as:** {current_user}")
+if st.sidebar.button("Logout",type="primary"):
+    #delete the session
+    del st.session_state["authenticated_user"]
+    #route back to the landing page
+    st.switch_page("views\landing.py")
+
+
+
 #======================================================
 #2. NEOBANK DASHBORD HEADER
 #======================================================

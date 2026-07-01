@@ -22,7 +22,7 @@ if auth_mode=="Login":
         if login_Username and login_Password:
             try:
                 payload={"username":login_Username,"password":login_Password}
-                response = requests.post("http://127.0.0.1:8000/Login", json=payload)
+                response = requests.post("http://127.0.0.1:8000/login", json=payload)
                 if response.status_code==200:
                     st.success("Login Successful.Welcome to Aura Bank")
                     st.session_state["authenticated_user"] = login_Username

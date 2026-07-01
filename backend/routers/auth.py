@@ -26,7 +26,7 @@ class UserAuth(BaseModel):
     @classmethod
     def validate_password(cls, v: str) -> str:
         # Python's built-in re module safely handles the lookahead regex
-        if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*[3-11])(?=.*[@_.-])[A-Za-z0-9@_.-]+$", v):
+        if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@_.-])[A-Za-z0-9@_.-]+$", v):
             raise ValueError("Password must contain at least one uppercase, one lowercase, one number, and one approved special character (@, _, ., -)")
         return v
 
@@ -46,7 +46,7 @@ def login_user(user: UserAuth, conn = Depends(get_db)):
     failed_attempts = cursor.fetchone()
 
     # Strict 3-strike lockout enforcement returning the industry-standard 423 Locked status
-    if failed_attempts >= 3:
+    if failed_attempts[0] >= 3:
         raise HTTPException(status_code=423, detail="Account locked due to excessive failed attempts.\nTry again after sometime")
 
     # Parameterised queries to absolutely prevent SQL Injection vulnerabilities
@@ -56,7 +56,7 @@ def login_user(user: UserAuth, conn = Depends(get_db)):
     if user_record is None:
         raise HTTPException(status_code=404, detail="User doesn't exist.\nPlease create an account first")
         
-    stored_password = user_record
+    stored_password = user_record[0]
 
     # Active Auditing: Verifying credentials while dynamically writing the exact authentication state to the ledger
     if stored_password == user.password:

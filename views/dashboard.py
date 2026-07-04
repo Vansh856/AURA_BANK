@@ -21,12 +21,12 @@ if st.sidebar.button("Logout",type="primary"):
     #delete the session
     del st.session_state["authenticated_user"]
     #route back to the landing page
-    st.switch_page("views\landing.py")
+    st.switch_page("views/landing.py")
 
 
 
 #======================================================
-#2. NEOBANK DASHBORD HEADER
+#3. NEOBANK DASHBORD HEADER
 #======================================================
 
 st.title(f"Welcome to your Neobank, {current_user}! 🏦")
@@ -34,7 +34,7 @@ st.markdown("*Your engagement data is your ultimate financial asset.*")
 st.markdown("---")
 
 #==================================================
-#3. CREATING USER DESCIPTION CHART
+#4. CREATING USER DESCIPTION CHART
 #==================================================
 aura_Score,aura_points,auraCard=st.columns(3)
 
@@ -48,16 +48,14 @@ with auraCard:
     st.metric(label="Aura credit card", value="750", delta="+15", delta_description="SILVER")
 
 #==============================================================
-#4. GAMING AND FEEDBACK ENGINE
+#5. LOGIC BUTTONS
 #==============================================================
 
 st.markdown("---")
-st.subheader("🎮Beta Testing Engine")
-st.info("Test this open source web game to earn aura points and to gain aura score")
 
+    #=========================================
+    #5A. CREATING GAME TESTING BUTTON
+    #=========================================
+if st.button("Game Testing Engine🎮"):
+    st.switch_page("views/game_testing.py")
 
-#Embed the web game using the streamlit iframe component
-components.iframe("https://play2048.co/", width=700, height=500)
-
-
-#Feedback engine

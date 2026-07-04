@@ -2,7 +2,17 @@ import streamlit as st
 import requests
 st.image("assets/banner.png", link="https://github.com")
 st.title(" :green[AURA BANK 🏦]")
-st.markdown("*The Financialization of Engagement Data*")
+st.info(
+    """
+    ### **Experience the *Virtual Economy*** 📈
+    
+    **The Financialisation of Engagement Data is here.** 
+    Take control of your virtual assets, play beta games, and build your simulated credit identity. 
+    Join thousands of users building their financial futures, together.
+    """
+)
+
+st.text("") # Add a little breathing room
 st.markdown("---")
 col1,col2=st.columns(2)
 with col1:

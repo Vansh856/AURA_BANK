@@ -19,14 +19,13 @@ CREATE TABLE login_attempts_audit (
     FOREIGN KEY (UserName) REFERENCES UserLogin(UserName)
 );
 
---
+--creating table to track users economy
+
 CREATE TABLE UserEconomy (
     EconomyID INT PRIMARY KEY IDENTITY(1,1),
-    UserName VARCHAR(100) NOT NULL UNIQUE,
+    UserName VARCHAR(100) NOT NULL,
     AuraScore INT DEFAULT 750,
     AuraPoints INT DEFAULT 1000,
-    CardTier VARCHAR(20) DEFAULT 'Silver',
-    LastLogin DATETIME DEFAULT GETDATE(), -- Option B: Tracks their last active timestamp
+    CardTier VARCHAR(20) DEFAULT 'Bronze',
     FOREIGN KEY (UserName) REFERENCES UserLogin(UserName)
-); 
-SELECT * FROM UserEconomy
+);

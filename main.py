@@ -17,15 +17,16 @@ dashboard_page = st.Page("views/dashboard.py", title="Dashboard", icon="🏦", v
 
 contact_page=st.Page("views/contact.py",title="contact",visibility="hidden")
 about_page=st.Page("views/about.py",title="About us",visibility="hidden")
+testing_engine=st.Page("views/game_testing.py",title="Testing engine",icon="🎮",visibility="visible" if is_logged_in else "hidden")
 
 #=================================
 # 3. SETUP THE NAVIGATION
 #=================================
 
-pg = st.navigation([landing_page, auth_page, dashboard_page,contact_page,about_page])
+pg = st.navigation([landing_page, auth_page, dashboard_page,contact_page,about_page,testing_engine])
 
 #========================
 # 4. run the app
-#========================
+#=======================
 
 pg.run()

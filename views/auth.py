@@ -2,18 +2,23 @@ import streamlit as st
 import requests
 st.title("🔐 Authentication Gateway")
 
-
-#1: Fetch User's Intention from the Landing page
+#=========================================================
+#1. Fetch User's Intention from the Landing page
+#=========================================================
 
 initial_mode=st.session_state.get("Auth_mode","Login")
 Auth_index=0 if initial_mode=="Login" else 1
 
-#2: using radio button instead of tabs to use indexing
+#==============================================================================
+#2. using radio button instead of tabs to use indexing
+#==============================================================================
 
 auth_mode = st.radio("Select Mode", ["Login", "Register"], index=Auth_index, horizontal=True, label_visibility="collapsed")
+
 # ==========================================
 # 3: LOGIN PIPELINE
 # ==========================================
+
 if auth_mode=="Login":
     st.subheader("Welcome Back!")
     login_Username=st.text_input("Enter your username",key="log_user")
@@ -40,7 +45,7 @@ if auth_mode=="Login":
             st.warning("Please fill in both the username and password fields.")
 
 # ==========================================
-#registration pipeline
+#4. registration pipeline
 # ==========================================
 elif auth_mode=="Register":
     st.subheader("Create an Aura Bank Account")

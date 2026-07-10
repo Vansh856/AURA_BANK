@@ -2,19 +2,30 @@ import streamlit as st
 import streamlit.components.v1 as components
 from datetime import datetime
 
-#==========================================
-#1. ROUTE PROTECTION
-#==========================================
+# Import our static game bundles from our new helper module!
+from views.games_bundle import GAMES
 
-#If the user is not in the session memory kick them back to the landing page
+# =========================================================
+# 1. ROUTE PROTECTION (Security First)
+# =========================================================
 if "authenticated_user" not in st.session_state:
-    st.warning("Unauthorized Access.Please login first")
+    st.warning("Unauthorized Access. Please login first.")
     st.switch_page("views/landing.py")
 
-# =========================================================
-# 2. PAGE HEADER
-# =========================================================
+current_user = st.session_state["authenticated_user"]
 
-st.title("🎮 B2B Game Testing Engine")
-st.markdown("*Play the game, test the mechanics, and provide high-quality feedback to boost your Aura Score!* [3, 4]")
-st.markdown("---")
+#=========================================
+#SESSION STATE INITIALIZER
+#=========================================
+
+#on off switch for gameplay sandbox
+if "test_started" not in st.session_state:
+    st.session_state["test_started"]=False
+
+#on off button for post game feedback form
+if "show_feedback_form" not in st.session_state:
+    st.session_state["show_feedback_form"]=False
+
+#check which built the user is actively testing
+if "select_game" not in st.session_state:
+st.session_state[]

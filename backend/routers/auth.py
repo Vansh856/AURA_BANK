@@ -3,11 +3,18 @@ from pydantic import BaseModel, Field,field_validator
 from database import get_db
 import re
 
-# The 1% Architecture: Modular routing to decouple authentication pipelines from core economy logic
+#=======================================================
+#1. DEFINING THE ROTER TO MAKE THE PROJECT MODULAR
+#=======================================================
+
 router = APIRouter()
 
-# Shift-Left Security: Enforcing strict schema validation at the API layer before data ever touches the database
+#============================================================
+#2. VERIYING THE DATA USING BASEMODEL LIBRARY
+#============================================================
+
 class UserAuth(BaseModel):
+    #using feild module to apply strict validation
     username: str = Field(
         ..., 
         min_length=3, 
@@ -29,6 +36,10 @@ class UserAuth(BaseModel):
         if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@_.-])[A-Za-z0-9@_.-]+$", v):
             raise ValueError("Password must contain at least one uppercase, one lowercase, one number, and one approved special character (@, _, ., -)")
         return v
+
+#=====================================================
+#3. LOGIN PIPELINE
+#=====================================================
 
 @router.post("/login")
 # Dependency Injection: FastAPI dynamically borrows and securely yields the db connection, strictly preventing memory leaks
@@ -67,6 +78,10 @@ def login_user(user: UserAuth, conn = Depends(get_db)):
         cursor.execute("INSERT INTO login_attempts_audit (UserName, status) VALUES (?, 'FAILED')", (user.username,))
         conn.commit()
         raise HTTPException(status_code=401, detail="Wrong Password.")
+
+#=======================================================
+#2. REGISTRATION PIPELINE
+#=======================================================
 
 @router.post("/register")
 def register_user(user: UserAuth, conn = Depends(get_db)):

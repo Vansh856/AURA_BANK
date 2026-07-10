@@ -10,7 +10,7 @@ is_logged_in="authenticated_user" in st.session_state
 # 2. DEFINING THE PAGES
 #=============================================
 
-landing_page = st.Page("views/landing.py", title="Home", icon="🏠", default=True)
+landing_page = st.Page("views/landing.py", title="Home", icon="🏠", default=True,visibility="hidden" if is_logged_in else "visible")
 #changing the visibility according to the session state
 auth_page = st.Page("views/auth.py", title="Login / Register", icon="🔐",visibility="hidden" if is_logged_in else "visible")
 dashboard_page = st.Page("views/dashboard.py", title="Dashboard", icon="🏦", visibility="visible"if is_logged_in else "hidden")

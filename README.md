@@ -1,71 +1,108 @@
 # 🏦 Aura Bank
-**The Financialization of Engagement Data.**
+
+> **The Financialization of Engagement Data.**  
+> Aura Bank is a revolutionary B2B user-testing engine disguised as an immersive, gamified virtual neobank. It bridges the gap between game developers needing high-fidelity feedback and players seeking engaging, status-driven mechanics [1, 2].
+
+---
 
 ## 🚀 Overview
-Aura Bank is a B2B user-testing engine wrapped inside a highly addictive, gamified virtual neobank [1, 2]. 
 
-Traditional reward apps feel like a chore and suffer from massive user churn because the payouts feel cheap [2, 3]. Aura Bank completely flips this model by replacing low-affinity cash rewards with high-affinity social and financial gamification [4]. Instead of earning pennies, users build a simulated financial identity—including an "Aura Score" (a virtual credit score) and an "Aura Points" balance—by delivering high-quality UI/UX feedback on beta games [4]. 
+Traditional play-to-test and reward models suffer from high user churn because micro-payments feel cheap, transactional, and tedious [2, 3]. Aura Bank completely reimagines this economy by replacing low-affinity cash rewards with status-driven financial gamification [4, 5]. 
 
-## ✨ Core Features
-* **The Virtual Neobank Dashboard:** A fully simulated B2C financial layer that displays the user's Aura Score, Aura Points, and AuraCard Tier using dynamic UI metrics [5].
-* **B2B Game Testing Engine:** An embedded platform where users can play open-source web games and provide detailed UI/UX feedback to earn virtual rewards [6].
-* **Anti-Data Degradation Engine:** To ensure B2B game studios receive valuable insights, the platform ties the user's Aura Score directly to feedback quality [7]. High-quality reviews boost credit scores, while spammy or mindless feedback tanks the score and locks the account [7].
-* **Macroeconomic "Sinks":** Built-in point-burning systems (like transaction fees or digital items) prevent the hyperinflation of the "Aura Points" supply [8].
+Instead of earning fractional pennies, testers build a simulated financial identity—anchored by an **Aura Score** (a virtual credit score) and **Aura Points** balance—by playing indie games and providing structured telemetry and written feedback [5, 6].
 
-## 💻 Tech Stack & Architecture
-This application is built with a highly modular, high-performance architecture split across multiple files [9].
+To ensure game developers receive premium, actionable data, Aura Bank features an **Anti-Data Degradation Engine** [7]. If users submit low-quality, rushed, or spammy feedback to speedrun points, their Aura Score tanks, locking their simulated financial tier and restricting access to elite virtual cards [7].
 
-**Frontend: Streamlit**
-* Streamlit is an open-source Python framework used to build and deploy the dynamic frontend interface [10].
-* Utilizes Streamlit's new `st.Page()` routing with the `visibility` parameter to dynamically hide and reveal the authentication and dashboard portals based on the user's login state [11].
-* Employs session-state route protection to prevent unauthorized access.
+---
 
-**Backend: FastAPI**
-* Built on FastAPI, a modern, fast web framework for building APIs with Python that offers performance on par with NodeJS and Go [12].
-* Uses Pydantic models for strict schema validation to restrict password lengths and prevent brute-force memory overloads [13, 14].
-* The backend will scale using the `APIRouter` class to separate authentication pipelines from the virtual economy calculations [9].
+## 🛠️ Repository Architecture
 
-**Database: SQL**
-* A relational SQL database utilizing B-Tree indexing and primary keys to ensure lightning-fast user authentication and secure data retrieval.
+The project is structured with a clean, high-performance modular layout separation [47]:
 
-I WILL UPDATE MY DAILY PROGRESS
-TODAY'S PROGRESS:- TRIED TO CLEAN THE LSNDING PSGE UI BUT FAILED
-## 📂 Project Structure
-
-```text
-aura_bank/
-│
-├── main.py                  # The Streamlit frontend entrypoint and page router
-├── backend/
-│   └── backend.py           # The FastAPI application and core API endpoints
-│
-├── views/                   # Modular Streamlit UI pages
-│   ├── landing.py           # VC-ready home page
-│   ├── auth.py              # Login and Registration Gateway
-│   ├── dashboard.py         # The Virtual Neobank financial dashboard
-│   ├── beta_testing.py      # Embedded HTML5 game and feedback form
-│   ├── about.py             # Hidden about page
-│   └── contact.py           # Hidden contact page
-│
-├── .gitignore               # Ensures virtual environments and DBs are not committed
-└── README.md                # Project documentation
-🛠️ How to Run Locally
-1. Clone the repository and set up your environment Make sure you have Python installed, then create and activate a virtual environment
-:
-git clone https://github.com/yourusername/aura-bank.git
-cd "aura bank"
-python -m venv venv
-source venv/Scripts/activate  # On Windows
-2. Install the required dependencies
-pip install "fastapi[standard]" streamlit requests
-3. Start the FastAPI Backend The fastapi dev command automatically detects the FastAPI app and starts a local server with auto-reload enabled
+```directory
 .
-cd backend
-fastapi dev backend.py
-The backend API will run on http://127.0.0.1:8000. You can view the interactive API documentation by navigating to http://127.0.0.1:8000/docs
-.
-4. Start the Streamlit Frontend Open a second terminal window, ensure your virtual environment is activated, and run the Streamlit app:
-streamlit run main.py
-The gamified neobank will open in your browser at http://localhost:8501.
+├── assets/                  # Static design files, UI templates, and logos
+├── backend/                 # High-performance FastAPI endpoints & Database connections
+│   ├── auth/                # Security handlers, JWT token generation, and password hashing
+│   ├── database/            # Relational MSSQL schema scripts, T-SQL migration procedures
+│   └── main.py              # FastAPI microservices entrance
+├── views/                   # Dynamic Streamlit frontend modules & Page routing
+│   ├── about.py             # App vision, B2B partner info, and company bio
+│   ├── auth.py              # Multi-state User registration and credential gatekeeping
+│   ├── contact.py           # B2B client ticket inquiries and customer service portal
+│   ├── dashboard.py         # Financial ledger, simulated credit cards, and balance statements
+│   ├── feedback.py          # Detailed B2B telemetry collection and feedback validation form
+│   ├── game_testing.py      # Gamers arcade lobby & active beta build selection
+│   ├── games_bundle.py      # Hardcoded lightweight HTML5 game modules (2048, Snake, etc.)
+│   ├── landing.py           # Conversational B2C/B2B landing hub page
+│   └── play_game.py         # Isolated sandboxed iframe container for lag-free gameplay
+├── .gitignore               # Excludes python virtual environments and databases
+├── LICENSE                  # Open-source MIT Licensing
+├── main.py                  # Entrypoint orchestrating modern page navigation routing
+└── README.md                # Project documentation and architectural manifest
+```
+
+---
+
+## ✨ Core Pillars & Features
+
+### 1. The Virtual Neobank Dashboard
+* **Dynamic Credit Scoring:** Players check their real-time **Aura Score** (credit score) and **Aura Points** balance [5].
+* **Simulated Tiered Cards:** High scores unlock prestigious card tiers (Silver, Gold, Obsidian), unlocking premium game sandboxes and marketplace privileges [6].
+
+### 2. B2B Game Testing Arena
+* **Sandboxed Components:** Leverages isolated client-side iframe sandboxes to render retro HTML5 games (e.g., 2048, Snake) directly inside the Streamlit client [6, 137].
+* **Lag-Free Interaction:** Heavy gameplay mechanics and input listeners execute strictly inside the iframe context, keeping the Python server completely light and reactive.
+
+### 3. High-Precision Telemetry & Anti-Data Degradation
+* **Precision Timers:** Automatically calculates precise active session playtime durations behind the scenes when a player launches a beta build.
+* **Smart Validation Forms:** Uses input buffering techniques (`st.form`) to guarantee a smooth, lag-free writing experience.
+* **T-SQL Telemetry Logging:** Records structured quantitative ratings (Gameplay, Graphics, Audio, Performance) and verified qualitative reviews inside relational schemas [125].
+
+### 4. Robust MSSQL Backend Database
+* Built on a relational **Microsoft SQL Server (MSSQL)** schema utilizing clustered and non-clustered indexing for lightning-fast user authentication and integrity [125, 528].
+* Restricts brute-force memory leaks with strict input character constraints and structured schemas linking game reviews cleanly back to unique user tables via foreign key relations [127, 331].
+
+---
+
+## 🔌 Technical Handshakes
+
+### Dynamic State Routing (`main.py`)
+Rather than relying on outdated sidebar navigations, the app implements Streamlit’s modern `st.Page` structure [11, 47]. It dynamically controls user navigation based on state variables [11]:
+```python
+landing_page = st.Page(
+    "views/landing.py", 
+    title="Home", 
+    icon="🏠", 
+    default=not is_logged_in,
+    visibility="hidden" if is_logged_in else "visible"
+)
+```
+This ensures hidden panels (like the gameplay renderer or the feedback portal) remain completely routable programmatically via state-guards while preventing sidebar clutter for clean aesthetics [11, 574].
+
+---
+
+## 🚀 Setting Up Locally
+
+### Prerequisites
+* **Python 3.12+**
+* **Microsoft SQL Server (MSSQL)** [114]
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Vansh856/AURA_BANK.git
+   cd AURA_BANK
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Initialize the Database:
+   Set up your MSSQL server connection string inside `backend/database/` and run the structural T-SQL schemas to initialize the `UserLogin`, `UserEconomy`, and `GameTelemetry` tables [125, 127].
+4. Launch the Application:
+   ```bash
+   streamlit run main.py
+   ```
 
 
